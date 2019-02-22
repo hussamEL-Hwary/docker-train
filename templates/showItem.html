@@ -1,0 +1,26 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+	<div class='container'>
+		<div class='showitem'>
+			<h2>{{item.name}}</h2>
+      <p><b>Category: </b>{{item.category.name}}</p>
+      <p><b>Submitter: </b>{{item.user.name}}</p>
+      <p><b>Description: </b>{{item.description}}</p>
+
+      <a href = "{{url_for('showLatestItems')}}"><i>Main Menu</i></a>
+      &nbsp;&nbsp;&nbsp;
+      {% if item.user_id == user_id %}
+        <a href = "{{url_for('editItem', item_id = item.id)}}">
+          <i>Edit Item</i>
+        </a>
+        &nbsp;&nbsp;&nbsp;
+        <a href = "{{url_for('deleteItem', item_id = item.id)}}">
+          <i>Delete Item</i>
+        </a>
+      {% endif %}
+		</div>
+	</div> <!-- end of container-->
+
+{% endblock %}

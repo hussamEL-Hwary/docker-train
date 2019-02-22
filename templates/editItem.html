@@ -1,0 +1,36 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+
+	<div class='container'>
+		<div class='newitem'>
+			<h2>Edit Item: {{item.name}}</h2>
+
+      <form action="{{ url_for('editItem', item_id = item.id)}}" method = 'post'>
+      <dl>
+      	<dt>Name:</dt>
+      		<dd><input type ='text' size='80' name='name' placeholder='{{item.name}}'></dd>
+      	<dt>Description:</dt>
+				<dd><textarea name = 'description' rows='5' cols='40' placeholder = '{{item.description}}'></textarea></dd>
+      	<dt>Category:</dt>
+          <dd><select name='category_id'>
+						  <option value="{{item.category.id}}" selected>{{item.category.name}}</option>
+              {% for category in categories %}
+								{% if item.category.name != category.name %}
+	            		<option value="{{category.id}}">{{category.name}}</option>
+								{% endif %}
+			        {% endfor %}
+              </select>
+					</dd>
+      </dl>
+
+      <input type='submit' value='Edit Item'>
+
+			<a class='right' href = "{{url_for('showLatestItems')}}"><i>Cancel</i></a>
+
+      </form>
+		</div>
+	</div> <!-- end of container-->
+
+{% endblock %}

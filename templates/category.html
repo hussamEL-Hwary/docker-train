@@ -1,0 +1,31 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+	<div class='container'>
+		<div class='categorylist'>
+			<h2>Categories</h2>
+			{% for category in categories %}
+				<p><a href = "{{url_for('showCategory', category_id = category.id)}}">
+					<b>{{category.name}}</b>
+				</a></p>
+			{% endfor %}
+		</div>
+
+		<div class='itemlist'>
+			<h2>{{categoryName}} ({{ items.count() }} items)</h2>
+			{% if user_id %}
+				<p><a href = "{{url_for('newItem')}}">
+					<i>Add new item</i>
+				</a></p>
+			{% endif %}
+			{% for item in items %}
+			<p><a href = "{{url_for('showItem', item_id = item.id)}}">
+				<b>{{item.name}}</b> <span class = 'small'>({{item.user.name}})</span>
+			</a></p>
+			{% endfor %}
+		</div>
+
+	</div> <!-- end of container-->
+
+{% endblock %}

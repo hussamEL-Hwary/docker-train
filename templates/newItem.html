@@ -1,0 +1,30 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+	<div class='container'>
+		<div class='newitem'>
+			<h2>Add New Item</h2>
+      <form action="{{ url_for('newItem')}}" method = 'post'>
+      <dl>
+      	<dt>Name:</dt>
+      		<dd><input type ='text' size='80' name='name'></dd>
+      	<dt>Description:</dt>
+      		<dd><textarea name = 'description' rows='5' cols='60' > </textarea></dd>
+      	<dt>Category:</dt>
+          <dd><select name='category_id'>
+                {% for category in categories %}
+                  <option value="{{category.id}}">{{category.name}}</option>
+                {% endfor %}
+              </select></dd>
+      </dl>
+
+      <input type='submit' value='Create Item'>
+
+			<a class='right' href = "{{url_for('showLatestItems')}}"><i>Cancel</i></a>
+
+      </form>
+		</div>
+	</div> <!-- end of container-->
+
+{% endblock %}

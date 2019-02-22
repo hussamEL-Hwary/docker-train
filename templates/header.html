@@ -1,0 +1,13 @@
+<div class = 'heading'>
+  &nbsp;&nbsp;<span class='title'>KickButt Catalog</span>
+  <i> World's greatest martial arts supplies.</i>
+
+  <!-- Set log in/out link based on user being logged on. -->
+  {% if user_id %}
+    <span class = 'right'><a href="{{url_for('disconnect')}}">Logout </a>&nbsp;
+      &nbsp;&nbsp;</span>
+  {% else %}
+    <span class = 'right'><a href="{{url_for('showLogin')}}">Login</a>&nbsp;
+      &nbsp;&nbsp;</span>
+  {% endif %}
+</div>
